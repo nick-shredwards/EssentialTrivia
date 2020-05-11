@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Text, View, Button } from 'react-native';
+import { Text, View, Button, AppRegistry, StyleSheet } from 'react-native';
+import QuickMatch from './proj/EssentialTrivia/QuickMatch';
    
 export default class Homepage extends Component {
     state = {
@@ -10,6 +11,11 @@ export default class Homepage extends Component {
         ]
     }
 
+    handlePress = (item) => {
+
+    }
+
+
     render() {
         return (
             <View style={{
@@ -18,11 +24,13 @@ export default class Homepage extends Component {
               width: '100%',
               alignItems: 'center'
               }}>
+              <Text style = {{ fontSize: 40, fontWeight: 'bold'}}>Essential Trivia</Text>
               {
                   this.state.names.map((item, index) => (
                     <Button
                       key = {item.id}
                       color = {item.color}
+                      onPress = {() => this.handlePress(item)}
                       title = {item.name} 
                     />
                   ))
