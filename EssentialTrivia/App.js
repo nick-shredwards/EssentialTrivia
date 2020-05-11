@@ -1,7 +1,27 @@
+import 'react-native-gesture-handler';
 import React, { Component } from 'react';
 import { Text, View, Button, AppRegistry, StyleSheet } from 'react-native';
-import QuickMatch from './proj/EssentialTrivia/QuickMatch';
-   
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+const Stack = createStackNavigator();
+
+function Etstack(){
+  return(
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+        name = "Home"
+        component = {Home}
+        options
+        />
+
+        <Stack.Screen name = "QuestionPage" component = {Question}/>
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
 export default class Homepage extends Component {
     state = {
         names: [
@@ -11,9 +31,9 @@ export default class Homepage extends Component {
         ]
     }
 
-    handlePress = (item) => {
-
-    }
+   handlePress = () => {
+    navigation.navigate('')
+  }
 
 
     render() {
@@ -30,7 +50,7 @@ export default class Homepage extends Component {
                     <Button
                       key = {item.id}
                       color = {item.color}
-                      onPress = {() => this.handlePress(item)}
+                      onPress = {() => this.handlePress()}
                       title = {item.name} 
                     />
                   ))

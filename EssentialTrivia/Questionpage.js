@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, Button } from 'react-native';
 
-export default class Questionpage extends Homepage {
+export default class Questionpage extends Component {
     state = {
         answers: [
             { id: 0, name: 'Answer 1', color: 'skyblue',},
