@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { Text, View, Button } from 'react-native';
 
 export default class Questionpage extends Component {
-    state = {
+  constructor(props){
+    super(props);
+    this.state = {
         answers: [
             { id: 0, name: 'Answer 1', color: 'skyblue',},
             { id: 1, name: 'Answer 2', color: 'skyblue',},
@@ -10,7 +12,7 @@ export default class Questionpage extends Component {
             { id: 3, name: 'Answer 4', color: 'skyblue',}
         ]
     }
-
+  }
     render() {
         return (
             <View style={{
@@ -20,7 +22,7 @@ export default class Questionpage extends Component {
               alignItems: 'center'
               }}>
               { <Text>Essential Trivia</Text> }
-              { <Text>Question 1</Text>}
+              { <Text>{this.props.modResponse}</Text>}
               {
                   this.state.answers.map((item, index) => (
                     <Button
