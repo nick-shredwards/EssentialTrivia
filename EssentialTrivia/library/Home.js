@@ -10,12 +10,19 @@ export default class Home extends Component {
             { id: 1, name: 'QuickMatch', color: 'skyblue',},
             { id: 2, name: 'High Scores', color: 'skyblue',}
             ],
-        url: 'http://10.0.1.17:3001' 
-    }
+            url: 'http://10.0.1.17:3001',
+            title: "Navigation Example"
+          };
+
+    if (typeof this.props.route.params === 'undefined')
+        this.props.route.params = {
+            title: this.state.title,
+            question: '',
+            feCount : 0 };
+    this.params = this.props.route.params;  // for convenience
   }
 
   handlePress = (op, method = '', item, params = {}) => {
-    if (item.id == 1) {this.props.navigation.navigate('Questionpage')}
     if (method != '')
         params.method = method;
     fetch(this.state.url + '/'+op, params)
@@ -25,14 +32,13 @@ export default class Home extends Component {
               Sent:  op=${JSON.stringify(op)}\nparams+method=${
         JSON.stringify(params)}\n
               Received:  ${responseText}`);
-        let modResponse = responseText.replace('{"question":[{"trivia":"(', "");
-        modResponse = modResponse.replace(/"|[)]|}]}|\\/g, '');
-        <Questionpage questAnswers = {modResponse} />
-        console.log(modResponse);
+        var modResponse = responseText.replace('{"question":[{"trivia":"(', "");
+        this.props.route.params.question = modResponse.replace(/"|[)]|}]}|\\/g, '');
         })
         .catch((error) => {
             console.error(error);
         });
+        if (item.id == 1) {this.props.navigation.push('Questionpage', this.props.route.params);}
 }
 
 
