@@ -8,7 +8,7 @@ const dbHost = "csinparallel.cs.stolaf.edu";
 const user = 'edward7';    // CHANGE to your username, e.g., jones1
 //const password = lib.getPGPassword(dbHost);  // uncomment for Windows
 const dbName = 'mca_s20';
-const schema = 'edward7';  // CHANGE to your username as schema for Lab 5
+const schema = 'mca_s20_trivia';  // CHANGE to your username as schema for Lab 5
                        // CHANGE to team schema for project
 
 const pool = new Pool({
